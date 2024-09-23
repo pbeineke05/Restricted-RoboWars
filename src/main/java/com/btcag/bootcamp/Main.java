@@ -118,7 +118,31 @@ public class Main {
             roboYLength--;
         }
 
-        System.out.println("Das Spielfeld ist " + length + "breit und " + height + "hoch.");
-        System.out.println("Der Robo startet auf Position " + roboX + "," + roboY + ".");
+        roboY = height - roboY + 1; //Umkehr des Koordinatensystems, damit 0,0 wieder unten links ist
+
+        long lengthCounter = length, heightCounter = height;
+        boolean noRobo;
+
+        while (heightCounter-- > 0) {
+            while (lengthCounter-- > 0) {
+                noRobo = true;
+                System.out.print("[");
+                while (length - lengthCounter == roboX) {
+                    while (height - heightCounter == roboY) {
+                        System.out.print(playerRobot);
+                        noRobo = false;
+                        break;
+                    }
+                    break;
+                }
+                while (noRobo) {
+                    System.out.print(" ");
+                    break;
+                }
+                System.out.print("]");
+            }
+            System.out.println();
+            lengthCounter = length;
+        }
     }
 }
